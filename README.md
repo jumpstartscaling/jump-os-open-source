@@ -38,6 +38,12 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull reques
 
 Jump OS was created and is maintained by **Christopher Amaya / Jumpstart Scaling**. The project is being released as an open-source contribution to the enterprise agent engineering community.
 
+## Commercial and acquisition strategy
+
+The public core is intentionally permissively licensed so serious companies can evaluate, adopt, integrate, and contribute without a licensing barrier. The commercial value is expected to compound through authorship, community adoption, implementation expertise, support, hosted offerings, private extensions, trademarks, and a trustworthy governance standard—not by restricting basic reading or use of the public architecture.
+
+Apache-2.0 does not promise exclusivity to a future buyer. Once released, the granted rights are broad and generally irrevocable for that release. A future acquisition can still include the company, copyright interests in unreleased work, trademarks, hosted products, commercial extensions, customer relationships, and the maintainer/community network. It cannot retroactively turn the already-published Apache-2.0 release into closed or exclusive software.
+
 ## License
 
-Apache License 2.0. See [`LICENSE`](LICENSE).
+Apache License 2.0. See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE). Project names and branding are addressed in [`TRADEMARKS.md`](TRADEMARKS.md).
