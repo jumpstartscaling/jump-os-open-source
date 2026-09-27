@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jumpstartscaling/jump-os-open-source/blob/main/schemas/execution-receipt.schema.json",
+  "title": "Jump OS Execution Receipt",
+  "type": "object",
+  "required": ["receipt_id", "timestamp", "task", "principal", "authority_boundary", "evidence_chain", "result"],
+  "properties": {
+    "receipt_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "task": {"type": "object", "required": ["task_id", "idempotency_key"]},
+    "principal": {"type": "object", "required": ["identity", "auth_method"]},
+    "authority_boundary": {"type": "object", "required": ["policy_revision", "decision"]},
+    "evidence_chain": {"type": "object", "required": ["input_hash", "output_hash", "rollback_state"]},
+    "result": {"type": "object", "required": ["status"]}
+  }
+}

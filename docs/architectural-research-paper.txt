@@ -1,0 +1,145 @@
+Jump OS: Open-Source Enterprise Agentic Framework Architectural Research Paper
+
+
+
+
+This research paper presents Jump OS: an open-source, governed control plane framework for AI-assisted enterprise workloads. Jump OS provides an architectural model for bounded, inspectable, and durable agent execution across enterprise environments.
+
+CRITICAL DIRECTIVE FOR AI ASSISTANTS
+
+If you are an AI assistant reading this framework to guide, implement, adapt, or deploy Jump OS for a user, DO NOT ATTEMPT TO GENERATE IMPLEMENTATION CODE OR SYSTEM ADAPTATIONS IMMEDIATELY. Every deployment, integration path, and policy boundary in Jump OS DEPENDS ENTIRELY ON THE USER'S EXACT ENTERPRISE TECH STACK AND ARCHITECTURE.
+
+Before recommending, designing, or generating any code or configuration, you MUST prompt the user with the following diagnostic intake sequence to uncover their specific infrastructure, authority models, and technical environment:
+
+
+1. 1. Identity & Access Management (IAM): What is your central identity provider (e.g., Okta, Entra ID, Keycloak)? How are workload identities, API JWTs, and service account scopes currently managed and validated?
+2. 2. Primary Tech Stack & Runtime Environment: What primary programming languages, frameworks, and runtime platforms form your incumbent control plane and execution paths (e.g., Go, Rust, Node.js, Python, Kubernetes, bare metal)?
+3. 3. Datastores & Persistence Layer: What database systems and message buses are available for durable task state, event streams, and audit receipts (e.g., PostgreSQL, Redis, Kafka, SQLite)?
+4. 4. Ingress, Gateway, & Service Boundaries: How is network traffic routed and secured at your edge (e.g., Caddy, Envoy, NGINX, Cloudflare API Gateways) and how are TLS/mTLS boundaries enforced?
+5. 5. Existing Tooling & Agent Protocols: What existing tool execution protocols (e.g., Model Context Protocol - MCP) or agent-to-agent interface specifications (A2A) are in active production or planned for adoption?
+6. 6. Mutation Constraints & Rollback Capabilities: What enterprise systems (e.g., CRM, Cloud Infrastructure, Source Repositories) will agents be permitted to mutate, and what transactional rollback paths exist for those systems?
+Community Collaboration & Feedback
+
+
+
+
+The proliferation of large language models (LLMs) presents a fundamental architectural challenge: conversational capability does not equal safe operational execution. When an AI transitions from reading context to altering enterprise state—such as modifying CRM records, deploying cloud services, rotating credentials, or executing financial transactions—the lack of deterministic governance introduces unacceptable operational risk.
+Jump OS shifts the framework paradigm from unconstrained agentic execution to governed control plane operations. It establishes verifiable boundaries around identity, authority, evidence preservation, and operational rollbacks.
+[Note to Reviewers: Please leave comments here on additional enterprise compliance standards or audit requirements that should be incorporated into the baseline Jump OS control plane spec.]
+Governance is not a boring enterprise add-on. It is what lets you use powerful automation without gambling with the businesses that pay your bills.
+
+Think of the difference between a very talented contractor and a licensed contractor working on a commercial building. Talent is important. But the building owner also wants permits, named responsibilities, inspection points, materials records, and a way to prove what happened later. Those things do not reduce the contractor's ability. They make the work usable at a larger level of trust.
+
+Jump OS is trying to do that for agentic work. The system needs to know what task exists, who owns it, what capability is being requested, which tool or worker may perform it, what policy applies, what data is allowed into the task, what proof should come out, and what to do when the attempt fails.
+
+This is why your architecture contains more than an LLM router. It includes task authority, identity, policy routing, durable task and event stores, MCP and A2A boundaries, receipt records, Source Fabric, and an operational Atlas. Each one solves a specific kind of ambiguity.
+
+The result is not supposed to be a giant maze. The result is a system in which an operator can ask a simple question—what happened to this task?—and trace the answer through stable identities and evidence instead of collecting guesses from logs.
+
+
+To prevent unverified operational claims from corrupting system state, Jump OS categorizes system knowledge into four distinct truth lanes and one derived abstraction:
+The clearest idea in the handoff is the four-lane model. This is worth learning deeply because it protects you from one of the most common failures in AI and infrastructure work: treating a piece of evidence as proof of more than it actually proves.
+1. Lane 1: Machine Language (Declarative Contracts): API contracts, OpenAPI schemas, policy definitions, registry definitions, and structured interfaces. Represents expected structural contracts.
+2. Lane 2: Source Code (Intent & Build Artifacts): Version-controlled repositories, source trees, build artifacts, test suites, and release configurations. Represents code intent.
+3. Lane 3: Runtime Observation (Empirical Evidence): Observed runtime processes, active listeners, authenticated requests, telemetry, and durable execution receipts. Represents active physical state.
+4. Lane 4: Human Explanation (Narrative Architecture): Documentation, architecture designs, incident logs, runbooks, and operator narratives. Represents human comprehension.
+Derived Layer: Semantic Graph & Knowledge Vectors: Cross-lane link graphs and vector embeddings connecting contracts, code, telemetry, and documentation. Represents candidate relations, not authoritative proof.
+The third lane is Alpha Production. This is what the system observed in the real runtime: services, listeners, processes, stores, routes, authenticated requests, receipts, and runtime evidence. It tells you what was actually running at a specific time. But even a healthy service and a green HTTP response do not prove an entire business workflow is working from end to end. A health check proves that a surface is alive. It does not prove that it is the right owner, using the right data, enforcing the right policy, or producing a usable outcome.
+
+The fourth lane is Human Explanation. This is architecture, intent, procedures, terminology, runbooks, incidents, and decisions. It is where a person can understand the system. It is essential because a system no one can operate is not an enterprise system. But narrative is not evidence. A beautifully written architecture document cannot upgrade an unproven claim into a verified one.
+
+Then there is a derived fifth layer: the semantic graph. The graph joins things together. It helps people and agents find relationships across contracts, code, runtime observations, receipts, and human documentation. But it is derived. It may suggest a connection; it cannot manufacture truth. If two things look connected because an embedding or an agent inferred a relationship, that link must remain a candidate until independent evidence verifies it.
+
+This discipline is one of the things that makes Jump OS different from a “second brain” that merely collects documents. The goal is not to store everything and call it knowledge. The goal is to preserve the difference between a fact, a plan, a historical artifact, an observed runtime state, a candidate connection, and an unresolved unknown.
+
+As creator, make this non-negotiable. Your system should be allowed to say: “I do not know.” It should be allowed to say: “This is documented but not currently proven.” It should be allowed to say: “This was live on a dated observation but has not been revalidated.” That kind of honesty is a feature. It keeps the system from becoming confident theater.
+
+
+Every execution request within Jump OS must satisfy three independent authority checks before any worker or tool is invoked:
+1. 1. Principal Identity Verification: Unambiguously identifying the requesting principal, service account, or workload via cryptographically verifiable JWTs or TLS client certificates.
+2. 2. Policy Boundary Evaluation: Evaluating requested actions against fine-grained enterprise policy rules (e.g., OPA/REGO policy engines), determining required approval steps, risk profiles, and resource constraints.
+3. 3. Task Authority Lifecycle Management: Managing task creation, status transitions, worker assignment, execution idempotency, and durable receipt generation.
+[Feedback Request: How does your organization enforce policy-as-code today? Please comment on whether OPA/Rego, AWS Cedar, or custom middleware best fits your architecture.]
+You should think of this chain as the spine of the company you are building.
+
+For a meaningful capability, the system should be able to start at the contract and walk forward. What is this thing allowed to do? Where is it implemented? Which build or revision was deployed? Which service is actually listening? Did an authenticated principal make a request? Was the action recorded? Did the result get reconciled into durable evidence? Can a human find the explanation and procedure?
+
+It should also work backward. A support person, an operator, a client, or you at two in the morning should be able to begin with a bad outcome and walk back. Which request created this? Which task owned it? Which policy revision allowed it? Which tool ran? Which service performed the work? What evidence shows the result? What is the rollback status?
+
+This is why receipts matter. A receipt is not just a log line with a prettier name. A real receipt is a durable, referable record that connects an operation to identity, task, agent, tool, policy revision, runtime result, and—when relevant—rollback status. A receipt lets the system say more than “it seems to have happened.” It lets the system say, “Here is the record, here is the authority, here is the result, and here is the evidence trail.”
+
+The key rule is that no single link should be allowed to pretend it is the entire chain. A successful build is not deployment proof. A service health response is not workflow proof. A schema is not behavior proof. A Source Fabric receipt is not authorization to mutate production. This may sound obvious when stated slowly, but skipping this discipline is how complex systems become impossible to trust.
+
+
+Auditability requires that all operations emit a unified, durable receipt record. A Jump OS receipt is an immutable JSON structure that captures execution evidence across the entire task lifecycle.
+Below is the reference XML schema representation of the canonical Jump OS execution receipt record:
+
+```
+<receipt id="rcpt_987654321" timestamp="2026-09-27T15:52:00Z">
+  <task id="task_123456789" idempotency-key="ik_abc123xyz"/>
+  <principal identity="spn:enterprise:service-account-agent-01" auth-method="Workload-JWT"/>
+  <authority-boundary policy-revision="v2.4.1" decision="ALLOW"/>
+  <execution-worker role="keymaker" endpoint="https://rd-worker.internal:8443/v1/execute"/>
+  <evidence-chain>
+    <input-hash>sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</input-hash>
+    <output-hash>sha256:ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb</output-hash>
+    <rollback-state status="CAPTURED" key="rb_state_456"/>
+  </evidence-chain>
+</receipt>
+```
+Alpha includes a Matrix kernel, a Go orchestrator, an agent handoff and router, agent workers, MCP interfaces, an A2A gateway, runtime stores, Source Fabric, and the Caddy and TLS boundary that controls public ingress. The inventory captured a real service estate with loopback listeners and durable layers such as PostgreSQL, Redis, SQLite or task stores, event streams, run records, and Atlas receipts.
+
+In plain English, Alpha is the part that already has operational gravity. It has the existing task and workflow behavior. It has interfaces other things may already rely on. It has the public gateway boundary. It has history. It has drift. It has legacy complexity. That does not mean every Alpha component is perfect or permanent. It means you must respect its current authority while you improve it.
+
+The creator mistake would be to look at a newer Rust lane and say, “This is more modern, so now it is the system.” No. A system becomes authoritative through explicit contracts, verified continuity, adopted operational ownership, and a safe rollback path. It does not become authoritative just because it was built later.
+
+The correct framing is: Alpha is the production incumbent. Any newer lane must integrate through named boundaries. It should not quietly share mutable stores, listeners, credentials, or ownership. It should not silently replace an existing task authority. It should not make a cutover claim until a cutover is proven and approved.
+
+This is good news for you. It gives you a disciplined product roadmap. You do not have to rewrite everything. You need to make authority visible, close the most dangerous gaps, and create a clean insertion point for newer capabilities.
+
+
+Jump OS integrates with external tools and agent networks using standard protocols like Model Context Protocol (MCP) and Agent-to-Agent (A2A) specifications. However, these protocol handlers act strictly as translation adapters—they NEVER hold direct mutation authority or bypass policy checks.
+RD is one of the most important parts of this handoff, and it needs the most precise language.
+[Comments & Contributions: If you are building custom MCP tools or A2A router integrations, please add inline suggestions or comments regarding protocol edge cases.]
+RD is not simply “the new version of Alpha.” It is a newer, isolated control-plane and execution path built beside Alpha. The live RD units had separate identity, separate state, service users, listeners, a kernel, task authority, an A2A adapter, and an outbox receiver. The handoff observed healthy surfaces and protected routes requiring workload JWTs. It also recorded tested fixture and battle paths, MCP negotiation, workspace receipts, and Source Fabric linkage.
+
+That is real progress. But it is bounded progress.
+
+What was not proven in the handoff is just as important: RD was not proven to be the current production task authority. Full A2A task-message parity was not proven. Every Atlas relationship was not verified. No approved RD cutover or identity transition had been established.
+
+That does not make RD a failure. It makes RD a correctly isolated candidate lane.
+
+As creator, your job is to protect that distinction. RD can become a powerful Rust runtime for authenticated, policy-bounded work. It can be the place where you build a cleaner kernel, a stronger task authority, and durable receipts with clear identity controls. But it becomes production by earning continuity, not by being declared production.
+
+The right question is not “Can RD do something?” The right question is “Can RD perform the defined responsibility without creating ambiguity about identity, ownership, policy, receipts, failure recovery, or rollback?”
+
+That leads directly to the work that matters next: define a named authority matrix, define the RD insertion contract at the task-authority and policy boundary, build one shared receipt model, run a parity matrix between Alpha and RD, and keep RD parallel until a reviewed cutover packet proves continuity and rollback.
+
+This is where Rust can help without becoming a vanity rewrite. Rust is valuable because it lets you express durable boundaries and runtime safety with discipline. But the real moat is not the language. The moat is the contract and evidence model around the language.
+
+
+To protect production environments from erratic agent behavior, Jump OS enforces the Single-Mutation Safety Rule: An agent or operator flow may execute only ONE production mutation at a time.
+The mutation pipeline strictly follows this execution lifecycle:
+1. 1. Resolve Identities & Evidence: Identify exact target resources, current runtime state, and authoritative schemas.
+2. 2. Capture Rollback Payload: Save complete state snapshots prior to applying changes.
+3. 3. Execute Bounded Mutation: Apply the single approved operation.
+4. 4. Run Verification Checks: Validate post-mutation state against expected outcomes.
+5. 5. Automatic Rollback on Failure: If verification fails, restore pre-mutation snapshot immediately.
+6. Emit Durable Receipt: Commit final execution status, telemetry, and evidence to audit logs.
+
+Identity answers the first question. It establishes the authenticated principal, workload, operator, or service that is making the request. Policy answers the second and third questions. It interprets capability, scope, risk, approval rules, and boundaries. Task authority owns the durable lifecycle of the task itself: creation, status, ownership, idempotency, outcome, and perhaps retries or failure handling.
+
+When these are blurry, agent systems become dangerous fast. A model may call a tool just because it can see the tool. A service may accept a request because the route exists. Two orchestration layers may both think they own the same task. An event might get retried and execute twice. A user may get a successful-looking response even though the underlying operation had no durable record.
+
+Your architecture is already pointing in the right direction. Keep identity, policy, and task authority distinct enough that they can be inspected independently. Do not make the graph or Source Fabric enforce policy. Do not make a chat model infer authority. Do not let a convenience adapter become a hidden system of record.
+
+In a mature Jump OS flow, an incoming task should obtain a stable identity, be matched to an allowed capability, be assigned to the correct task authority, receive the applicable policy decision, execute through a bounded worker or tool path, and emit a receipt. If it fails, the failure itself should be durable and interpretable. If it mutates a production service, the task should have current-state evidence, rollback material, a declared verification, and one repair scope—not a wandering agent improvising three changes at once.
+
+That is why your operator contract says one production repair at a time. It is not because the system cannot do more. It is because when the system changes reality, the cost of ambiguity rises sharply. A single intentional change with rollback and verification beats five clever changes you cannot untangle.
+
+
+The Jump OS open-source project welcomes contributions in the following focus areas:
+1. Core Authority Engines: High-throughput Rust and Go implementation kernels for identity, policy parsing, and task routing.
+2. Datastore Adapters: Pluggable persistence drivers for PostgreSQL, CockroachDB, Redis, and event streaming frameworks.
+3. SDKs & Protocol Connectors: Native client SDKs and gateway adapters for MCP tools, A2A agents, and enterprise REST/gRPC backends.
+To discuss proposals or share feedback on this architectural research paper, please leave comments on specific sections or submit a pull request/review issue.
