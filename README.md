@@ -24,6 +24,13 @@ The full architectural research paper is in [`docs/architectural-research-paper.
 
 The sanitized receipt example is in [`examples/execution-receipt.json`](examples/execution-receipt.json). It uses fictional identifiers and endpoints; it is a shape example, not a live receipt.
 
+## Where to start
+
+- Read the [architectural research paper](docs/architectural-research-paper.txt) for the full model.
+- Inspect the [execution receipt schema](schemas/execution-receipt.schema.json) and [fictional receipt](examples/execution-receipt.json).
+- Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.
+- Use GitHub Discussions or Issues for questions, critiques, and narrowly scoped improvements.
+
 ## Project status
 
 Current status: architectural research and community specification.
@@ -33,6 +40,8 @@ The project does not currently promise a complete runtime, SDK, deployment chart
 ## Contributing
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request. Start with an issue for substantial changes, especially changes to authority, receipt semantics, policy boundaries, or protocol behavior.
+
+The public GitHub Project and Wiki are used for roadmap tracking and community-facing explanation. They are intentionally separate from the architectural source files in this repository.
 
 ## Ownership, authorship, and stewardship
 
