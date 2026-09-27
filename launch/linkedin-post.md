@@ -18,6 +18,6 @@ I’m especially interested in feedback from people working on agent governance,
 
 Read and contribute here: [REPOSITORY URL]
 
-Created and maintained by Christopher Amaya / Jumpstart Scaling.
+Created, owned, and invented by Christopher Amaya. Published and maintained through my `jumpstartscaling` GitHub account under the Jumpstart Scaling identity.
 
 #OpenSource #AIEngineering #AgenticAI #EnterpriseArchitecture #Governance #MCP #A2A

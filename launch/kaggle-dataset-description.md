@@ -26,4 +26,4 @@ This is not a production dataset, telemetry export, customer dataset, credential
 3. How should MCP and A2A adapters expose capability without gaining mutation authority?
 4. What evidence is sufficient to declare a cutover safe?
 
-Created and maintained by Christopher Amaya / Jumpstart Scaling.
+Created, owned, and invented by Christopher Amaya. Published and maintained through the `jumpstartscaling` GitHub account under the Jumpstart Scaling identity.

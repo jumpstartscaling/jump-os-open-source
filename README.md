@@ -34,9 +34,9 @@ The project does not currently promise a complete runtime, SDK, deployment chart
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request. Start with an issue for substantial changes, especially changes to authority, receipt semantics, policy boundaries, or protocol behavior.
 
-## Author and stewardship
+## Ownership, authorship, and stewardship
 
-Jump OS was created and is maintained by **Christopher Amaya / Jumpstart Scaling**. The project is being released as an open-source contribution to the enterprise agent engineering community.
+**Christopher Amaya is the owner, creator, and inventor of Jump OS.** The public repository is published through Christopher Amaya's `jumpstartscaling` GitHub account and maintained under the Jumpstart Scaling identity and brand. The project is being released as an open-source contribution to the enterprise agent engineering community.
 
 ## Commercial and acquisition strategy
 
