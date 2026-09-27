@@ -1,16 +1,14 @@
-# Jump OS: The Missing Control Plane for Enterprise Agentic Work
+# Jump OS: A Control Plane for Enterprise Agentic Work
 
-## The real problem is not whether an agent can act
+The most dangerous sentence in an enterprise AI system is: “The agent said it was done.”
 
-The enterprise question is whether anyone can prove that the action was authorized, bounded, attributable, reversible, and actually completed.
+If an agent can change a CRM record, deploy a service, rotate a credential, or trigger a financial workflow, a convincing response is not enough. An operator needs to know who requested the action, what policy allowed it, which task owned it, what actually ran, what evidence came out, and how the system can recover if verification fails.
 
-An AI system can produce a convincing answer in seconds. That does not mean it should be allowed to change a CRM record, deploy a service, rotate a credential, or trigger a financial workflow. The moment an agent can change business state, conversational fluency is no longer enough. The system needs a control plane.
-
-That is the problem Jump OS is designed to clarify.
+That is the problem Jump OS is designed to make inspectable.
 
 ## Jump OS treats agent execution as governed work
 
-Jump OS is an open architectural research project for bounded, inspectable, and durable enterprise agent execution. It separates the responsibilities that are often blurred together in agent platforms:
+Jump OS is an open architectural research project for bounded, inspectable, and durable enterprise agent execution. It keeps responsibilities that are often blurred together in agent platforms distinct:
 
 - identity: who is requesting the action;
 - policy: what the principal is allowed to do;
@@ -19,9 +17,9 @@ Jump OS is an open architectural research project for bounded, inspectable, and 
 - evidence: what can be proven afterward;
 - rollback: how the system recovers when verification fails.
 
-The point is not to make agents timid. The point is to make their power usable in environments where mistakes have owners, costs, and audit consequences.
+That separation gives an enterprise a chain it can inspect before, during, and after an action. It also gives the system somewhere honest to say “unknown,” “not authorized,” or “not revalidated” instead of turning uncertainty into a successful-looking answer.
 
-## Four truth lanes keep the system honest
+## Four truth lanes
 
 Jump OS distinguishes between four different kinds of knowledge:
 
@@ -30,11 +28,11 @@ Jump OS distinguishes between four different kinds of knowledge:
 3. Runtime observation: authenticated requests, active services, telemetry, and durable receipts.
 4. Human explanation: architecture, runbooks, decisions, and incident narratives.
 
-The framework also allows a derived semantic graph to connect these lanes. But a graph is not authority. An embedding can suggest a relationship; it cannot prove that the relationship is true.
+The framework also allows a derived semantic graph to connect these lanes. A graph is not authority. An embedding can suggest a relationship; it cannot prove that the relationship is true.
 
-This distinction matters because enterprise systems fail when a plan is mistaken for an observation, a health check is mistaken for an end-to-end result, or a document is mistaken for runtime proof.
+That distinction matters because enterprise systems fail when a plan is mistaken for an observation, a health check is mistaken for an end-to-end result, or a document is mistaken for runtime proof.
 
-## Receipts are more than logs
+## Receipts connect action to evidence
 
 A useful execution receipt should let an operator trace an operation from request to outcome:
 
@@ -46,7 +44,7 @@ A useful execution receipt should let an operator trace an operation from reques
 - verification result;
 - rollback state.
 
-That receipt is what turns “the agent said it happened” into “here is the authority, here is the operation, here is the evidence, and here is the recovery state.”
+A receipt turns “the agent said it happened” into “here is the authority, here is the operation, here is the evidence, and here is the recovery state.”
 
 ## One bounded production mutation at a time
 
@@ -59,9 +57,9 @@ For changes to production state, Jump OS uses a deliberately conservative lifecy
 5. Roll back if verification fails.
 6. Emit the durable receipt.
 
-This is not a claim that every system must have the same implementation. It is a design discipline: the cost of ambiguity rises sharply when an agent can alter reality.
+This is not a claim that every system needs the same implementation. It is a design discipline: ambiguity becomes expensive when an agent can alter reality.
 
-## Open by design, specific by necessity
+## Open by design, private where it should be
 
 The public Jump OS repository is intentionally an architectural specification and community starting point. It does not expose private Jumpstart Scaling infrastructure, tenant data, credentials, private hostnames, or deployment-specific mechanisms.
 
@@ -80,6 +78,8 @@ I’m looking for thoughtful feedback on:
 
 Jump OS was created, owned, and invented by Christopher Amaya. It is published and maintained through the `jumpstartscaling` GitHub account under the Jumpstart Scaling identity.
 
-Read the project and contribute: https://github.com/jumpstartscaling/jump-os-open-source
+Read the architecture, inspect the examples, and contribute here:
 
-This is architectural research—not a claim that a diagram, schema, or health check alone proves a production workflow.
+https://github.com/jumpstartscaling/jump-os-open-source
+
+The repository is architectural research, not a claim that a diagram, schema, or health check alone proves a production workflow.
