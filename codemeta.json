@@ -1,0 +1,19 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Jump OS",
+  "description": "A public architectural blueprint for building governed enterprise agent systems.",
+  "codeRepository": "https://github.com/jumpstartscaling/jump-os-open-source",
+  "issueTracker": "https://github.com/jumpstartscaling/jump-os-open-source/issues",
+  "releaseNotes": "https://github.com/jumpstartscaling/jump-os-open-source/blob/main/CHANGELOG.md",
+  "license": "https://spdx.org/licenses/Apache-2.0.html",
+  "version": "0.1.0",
+  "dateCreated": "2026-09-27",
+  "dateModified": "2026-09-30",
+  "programmingLanguage": [],
+  "runtimePlatform": [],
+  "applicationCategory": "Enterprise architecture specification",
+  "keywords": ["governed agents", "enterprise AI", "agent architecture", "control plane", "execution receipts", "MCP", "A2A"],
+  "author": {"@type": "Person", "givenName": "Christopher", "familyName": "Amaya", "affiliation": {"@type": "Organization", "name": "Jumpstart Scaling"}},
+  "isPartOf": {"@type": "Organization", "name": "Jumpstart Scaling", "url": "https://github.com/jumpstartscaling"}
+}

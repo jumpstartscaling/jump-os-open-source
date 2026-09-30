@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Jump OS: Public Blueprint for Governed Enterprise Agent Systems"
+message: "If you use Jump OS in research, design, or implementation work, please cite this release."
+type: software
+authors:
+  - family-names: Amaya
+    given-names: Christopher
+    affiliation: Jumpstart Scaling
+    website: https://github.com/jumpstartscaling
+repository-code: https://github.com/jumpstartscaling/jump-os-open-source
+repository-artifact: https://github.com/jumpstartscaling/jump-os-open-source/releases
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-09-30
+url: https://github.com/jumpstartscaling/jump-os-open-source
+keywords:
+  - governed agents
+  - enterprise AI
+  - agent architecture
+  - control plane
+  - execution receipts
+  - policy boundaries
+  - MCP
+  - A2A
+  - threat modeling

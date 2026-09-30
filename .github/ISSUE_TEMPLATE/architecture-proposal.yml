@@ -1,0 +1,32 @@
+name: Architecture proposal
+description: Propose a public contract, boundary, or research direction.
+title: "[Proposal]: "
+labels: ["architecture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Jump OS is a public blueprint, not a turnkey runtime. Do not include credentials, private endpoints, tenant data, or deployment-specific mechanisms.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or research question
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Proposed contract or boundary
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and examples
+      description: Include fictional examples or references where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: open_questions
+    attributes:
+      label: Open questions

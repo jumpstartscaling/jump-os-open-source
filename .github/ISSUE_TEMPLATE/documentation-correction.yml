@@ -1,0 +1,22 @@
+name: Documentation correction
+description: Report an inaccurate, unclear, or inconsistent public document.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Document and location
+      placeholder: docs/example.md, section heading
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is incorrect or unclear?
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction

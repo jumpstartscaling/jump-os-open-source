@@ -4,6 +4,8 @@
 
 Jump OS is an open-source architectural research project for building AI-assisted enterprise systems that are bounded, inspectable, durable, and honest about what they know.
 
+It is a public blueprint, not a product to install. The project defines contracts, design boundaries, and research guidance that organizations can use to build their own governed agent systems across their existing technology choices. It intentionally does not disclose Jumpstart Scaling's private enterprise implementation or prescribe one exact runtime, deployment topology, database, queue, model provider, or policy engine.
+
 The project focuses on the control-plane questions that appear when an agent can do more than answer a question: who is asking, what is allowed, which task owns the work, what changed, what evidence was produced, and how can the change be rolled back?
 
 This repository is a public specification and community starting point. It is not a claim that one reference implementation is production-ready, nor is it a publication of any private Jumpstart Scaling infrastructure, tenant data, credentials, internal hostnames, or deployment topology.
@@ -43,6 +45,8 @@ The project does not currently promise a complete runtime, SDK, deployment chart
 ## Contributing
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request. Start with an issue for substantial changes, especially changes to authority, receipt semantics, policy boundaries, or protocol behavior.
+
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff), and machine-readable project metadata is provided in [`codemeta.json`](codemeta.json).
 
 The public GitHub Project and Wiki are used for roadmap tracking and community-facing explanation. They are intentionally separate from the architectural source files in this repository.
 
