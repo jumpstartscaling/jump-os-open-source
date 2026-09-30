@@ -3,14 +3,81 @@
   "$id": "https://github.com/jumpstartscaling/jump-os-open-source/blob/main/schemas/execution-receipt.schema.json",
   "title": "Jump OS Execution Receipt",
   "type": "object",
-  "required": ["receipt_id", "timestamp", "task", "principal", "authority_boundary", "evidence_chain", "result"],
+  "additionalProperties": false,
+  "required": ["receipt_id", "schema_version", "timestamp", "task", "principal", "authority_boundary", "execution", "evidence_chain", "result"],
   "properties": {
-    "receipt_id": {"type": "string"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "schema_version": {"type": "string", "const": "1.0"},
     "timestamp": {"type": "string", "format": "date-time"},
-    "task": {"type": "object", "required": ["task_id", "idempotency_key"]},
-    "principal": {"type": "object", "required": ["identity", "auth_method"]},
-    "authority_boundary": {"type": "object", "required": ["policy_revision", "decision"]},
-    "evidence_chain": {"type": "object", "required": ["input_hash", "output_hash", "rollback_state"]},
-    "result": {"type": "object", "required": ["status"]}
+    "task": {
+      "type": "object", "additionalProperties": false,
+      "required": ["task_id", "idempotency_key", "action", "expires_at"],
+      "properties": {
+        "task_id": {"type": "string", "minLength": 1},
+        "parent_task_id": {"type": ["string", "null"]},
+        "idempotency_key": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "minLength": 1},
+        "expires_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "principal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["identity", "auth_method"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1},
+        "auth_method": {"type": "string", "minLength": 1}
+      }
+    },
+    "authority_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["policy_revision", "decision", "decision_at", "decision_expires_at"],
+      "properties": {
+        "policy_revision": {"type": "string", "minLength": 1},
+        "decision": {"type": "string", "enum": ["ALLOW", "DENY", "NOT_EVALUATED", "ERROR"]},
+        "decision_at": {"type": "string", "format": "date-time"},
+        "decision_expires_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["worker_id", "state"],
+      "properties": {
+        "worker_id": {"type": "string", "minLength": 1},
+        "state": {"type": "string", "enum": ["QUEUED", "CLAIMED", "RUNNING", "AWAITING_VERIFICATION", "SUCCEEDED", "FAILED", "EXPIRED", "CANCEL_REQUESTED", "CANCELLED", "QUARANTINED", "ROLLBACK_REQUESTED", "ROLLED_BACK", "PARTIALLY_COMPLETED", "UNKNOWN"]},
+        "attempt": {"type": "integer", "minimum": 1}
+      }
+    },
+    "evidence_chain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["input_hash", "output_hash", "rollback_state"],
+      "properties": {
+        "input_hash": {"type": "string", "minLength": 1},
+        "output_hash": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "rollback_state": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status"],
+          "properties": {"status": {"type": "string", "enum": ["NOT_ATTEMPTED", "CAPTURED", "REQUESTED", "SUCCEEDED", "FAILED", "NOT_APPLICABLE"]}, "key": {"type": ["string", "null"]}}
+        }
+      }
+    },
+    "result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "verification"],
+      "properties": {
+        "status": {"type": "string", "enum": ["ACCEPTED", "SUCCEEDED", "FAILED", "REJECTED", "EXPIRED", "CANCELLED", "UNKNOWN"]},
+        "verification": {"type": "string", "enum": ["NOT_ATTEMPTED", "UNVERIFIED", "VERIFIED", "FAILED"]},
+        "error_code": {"type": ["string", "null"]}
+      }
+    },
+    "interruption": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "kind": {"type": "string", "enum": ["PAUSE", "CANCEL", "TERMINATE", "QUARANTINE", "ROLLBACK"]},
+        "state": {"type": "string", "enum": ["REQUESTED", "AUTHORIZED", "PROPAGATED", "ACKNOWLEDGED", "STOPPING", "STOPPED", "VERIFIED", "DENIED", "UNREACHABLE"]},
+        "requested_by": {"type": "string"}
+      }
+    },
+    "notice": {"type": "string"}
   }
 }

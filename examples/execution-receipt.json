@@ -1,15 +1,17 @@
 {
   "receipt_id": "rcpt_example_001",
+  "schema_version": "1.0",
   "timestamp": "2026-01-01T00:00:00Z",
-  "task": {"task_id": "task_example_001", "idempotency_key": "ik_example_001"},
+  "task": {"task_id": "task_example_001", "idempotency_key": "ik_example_001", "action": "example.change", "expires_at": "2026-01-02T00:00:00Z"},
   "principal": {"identity": "example:service-account", "auth_method": "workload-jwt"},
-  "authority_boundary": {"policy_revision": "example-policy-1", "decision": "ALLOW"},
-  "execution_worker": {"role": "example-worker", "endpoint": "https://example.invalid/execute"},
+  "authority_boundary": {"policy_revision": "example-policy-1", "decision": "ALLOW", "decision_at": "2026-01-01T00:00:00Z", "decision_expires_at": "2026-01-02T00:00:00Z"},
+  "execution": {"worker_id": "example-worker", "state": "SUCCEEDED", "attempt": 1},
   "evidence_chain": {
     "input_hash": "sha256:example-input-hash",
     "output_hash": "sha256:example-output-hash",
+    "evidence_refs": ["evidence:fictional-output-001"],
     "rollback_state": {"status": "CAPTURED", "key": "rb_example_001"}
   },
-  "result": {"status": "SUCCEEDED", "verification": "EXAMPLE_ONLY"},
+  "result": {"status": "SUCCEEDED", "verification": "UNVERIFIED"},
   "notice": "Fictional example. It does not prove a live execution or production deployment."
 }

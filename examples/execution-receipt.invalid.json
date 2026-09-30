@@ -1,0 +1,12 @@
+{
+  "receipt_id": "rcpt_invalid_001",
+  "schema_version": "1.0",
+  "timestamp": "2026-01-01T00:00:00Z",
+  "task": {"task_id": "task_invalid_001", "idempotency_key": "ik_invalid_001", "action": "example.change", "expires_at": "2025-12-31T00:00:00Z"},
+  "principal": {"identity": "example:service-account", "auth_method": "fictional"},
+  "authority_boundary": {"policy_revision": "example-policy-1", "decision": "ALLOW", "decision_at": "2026-01-01T00:00:00Z", "decision_expires_at": "2026-01-02T00:00:00Z"},
+  "execution": {"worker_id": "example-worker", "state": "SUCCEEDED"},
+  "evidence_chain": {"input_hash": "sha256:example-input", "output_hash": null, "rollback_state": {"status": "CAPTURED"}},
+  "result": {"status": "SUCCEEDED", "verification": "VERIFIED"},
+  "unexpected_private_field": "this must fail schema validation"
+}
