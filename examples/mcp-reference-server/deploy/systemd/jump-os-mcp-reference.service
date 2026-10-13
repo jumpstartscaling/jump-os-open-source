@@ -8,12 +8,12 @@ Wants=network-online.target
 Type=simple
 User=jumpmcp
 Group=jumpmcp
-WorkingDirectory=/srv/apps/jump-os-mcp-reference
+WorkingDirectory=/srv/apps/jump-os-mcp-reference/examples/mcp-reference-server
 Environment=NODE_ENV=production
 Environment=HOST=127.0.0.1
 Environment=PORT=8787
 Environment=PUBLIC_HOST=mcp-reference.jumpstartscaling.com
-ExecStart=/usr/bin/node /srv/apps/jump-os-mcp-reference/dist/http.js
+ExecStart=/usr/bin/node /srv/apps/jump-os-mcp-reference/examples/mcp-reference-server/dist/http.js
 Restart=on-failure
 RestartSec=5
 NoNewPrivileges=true
