@@ -8,7 +8,10 @@ const HOST = process.env.HOST ?? "127.0.0.1";
 const PUBLIC_HOST = process.env.PUBLIC_HOST;
 const MAX_BODY_BYTES = 64 * 1024;
 const handler = createMcpHandler(createReferenceServer, {
-  legacy: "reject",
+  // Keep the standard 2025-era initialize handshake available for broadly
+  // compatible public MCP clients. HTTP legacy traffic is intentionally
+  // stateless; the SDK's newer envelope-based mode remains available too.
+  legacy: "stateless",
   responseMode: "json",
   maxRequestBodySize: MAX_BODY_BYTES
 });
