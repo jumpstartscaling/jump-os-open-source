@@ -10,6 +10,19 @@ The project focuses on the control-plane questions that appear when an agent can
 
 This repository is a public specification and community starting point. It is not a claim that one reference implementation is production-ready, nor is it a publication of any private Jumpstart Scaling infrastructure, tenant data, credentials, internal hostnames, or deployment topology.
 
+## What this repository gives you
+
+This repository gives you vendor-neutral contracts, design boundaries, examples, and research guidance. It does not give you a runtime to install or a deployment you can safely apply without adapting it to your own identity provider, systems, data stores, network boundaries, workers, and rollback capabilities.
+
+The safest way to read Jump OS is as a control-plane specification:
+
+```text
+identity -> route -> task -> policy -> worker -> receipt
+                                      -> verification -> rollback
+```
+
+Each step has a separate responsibility. A router does not authorize a task. A graph does not prove execution. A provider response does not prove business delivery. A health check does not prove an end-to-end workflow.
+
 ## Core ideas
 
 - Separate identity, policy, and task authority.
@@ -27,12 +40,23 @@ The full architectural research paper is in [`docs/architectural-research-paper.
 
 The sanitized receipt example is in [`examples/execution-receipt.json`](examples/execution-receipt.json). It uses fictional identifiers and endpoints; it is a shape example, not a live receipt.
 
+## Quick validation
+
+The examples can be checked locally with Python 3:
+
+```bash
+python3 examples/validate_receipts.py
+```
+
+The command should report that the valid example is accepted and the intentionally invalid example is rejected. Passing validation proves that the example matches the public schema. It does not prove a live execution, deployment, provider delivery, or production safety.
+
 ## Where to start
 
 - Read the [architectural research paper](docs/architectural-research-paper.txt) for the full model.
 - Inspect the [execution receipt schema](schemas/execution-receipt.schema.json) and [fictional receipt](examples/execution-receipt.json).
 - Read the [receipt field semantics](docs/receipt-semantics.md), [task lifecycle](docs/task-lifecycle.md), [policy boundaries](docs/policy-engine-boundaries.md), [protocol adapter boundaries](docs/protocol-adapter-boundaries.md), [threat model](docs/threat-model.md), and [emergency-stop architecture](docs/emergency-stop.md).
 - Read the [operational lessons and proof boundaries](docs/operational-lessons.md) for route authority, revalidation, Source Fabric, and bounded mutation examples.
+- Use the [receipt semantics](docs/receipt-semantics.md) to interpret `SUCCEEDED`, `VERIFIED`, `UNKNOWN`, `NOT_REVALIDATED`, and provider reconciliation states correctly.
 - Reproduce the positive and negative receipt checks with the [validation instructions](examples/VALIDATION.md).
 - Review the [changelog](CHANGELOG.md) for versioned public changes.
 - Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.
@@ -44,9 +68,11 @@ Current status: architectural research and community specification.
 
 The project does not currently promise a complete runtime, SDK, deployment chart, compliance certification, or production cutover. Contributions should make those boundaries clearer, not blur them.
 
+The public examples are fictional. Historical runtime observations must be treated as `NOT_REVALIDATED` until the current owner, route, revision, runtime, and evidence are checked again.
+
 ## Contributing
 
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request. Start with an issue for substantial changes, especially changes to authority, receipt semantics, policy boundaries, or protocol behavior.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening an issue or pull request. Start with an issue for substantial changes, especially changes to authority, receipt semantics, policy boundaries, or protocol behavior. Include the proposed contract, a bounded example, and the evidence that would show the change is correct.
 
 Citation metadata is provided in [`CITATION.cff`](CITATION.cff), and machine-readable project metadata is provided in [`codemeta.json`](codemeta.json).
 
