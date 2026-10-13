@@ -2,9 +2,9 @@
 
 All notable public changes to Jump OS are documented here.
 
-## [0.3.0] - 2026-10-13
+## [0.4.0] - 2026-10-13
 
-Documentation, architecture navigation, and safe MCP reference release.
+Documentation, architecture navigation, and safe public MCP reference release.
 
 ### Added
 
@@ -21,6 +21,9 @@ Documentation, architecture navigation, and safe MCP reference release.
 - A free, simulation-only MCP reference server using the official TypeScript SDK.
 - Local `stdio` installation with no network client, credentials, filesystem mutation, shell execution, or live-system adapter.
 - MCP tools for request classification, authority inspection, receipt validation, proof-gap explanation, and fictional bounded-mutation outcomes.
+- Optional Streamable HTTP entry point for the same simulation-only MCP tools.
+- Loopback-only default, a 64 KiB request limit, fixed endpoint routes, security headers, and optional exact-host enforcement.
+- Container build instructions and public deployment guidance for TLS, rate limiting, ingress logging, and DNS.
 
 ### Verification
 
@@ -35,6 +38,20 @@ Documentation, architecture navigation, and safe MCP reference release.
 This remains an architectural research and community specification. It does not provide a production runtime, SDK, deployment chart, hosted service, compliance certification, or guarantee of safe execution.
 
 The MCP reference server is an educational, simulation-only example. It is not a production gateway and does not mutate external systems.
+
+## [0.3.0] - 2026-10-13
+
+Safe local MCP reference release.
+
+### Added
+
+- A free, simulation-only MCP reference server using the official TypeScript SDK over local `stdio` transport.
+- Tools for request classification, authority inspection, receipt validation, proof-gap explanation, and fictional bounded-mutation outcomes.
+- Node.js build and test workflow with dependency audit.
+
+### Scope
+
+The reference server is educational and simulation-only. It has no network client, credentials, filesystem mutation, shell execution, live provider adapter, or production-system access.
 
 ## [0.2.0] - 2026-10-13
 

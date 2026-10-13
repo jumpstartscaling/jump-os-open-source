@@ -35,6 +35,17 @@ The package is published as `@jumpstartscaling/jump-os-mcp-reference` when a pub
 
 The server uses local `stdio` transport. It does not open a network listener.
 
+## Public Streamable HTTP mode
+
+The same simulation-only tools can be served over HTTP with:
+
+```bash
+npm run build
+HOST=127.0.0.1 npm run start:http
+```
+
+For a real public deployment, use the [public endpoint guide](../../docs/mcp-public-reference-endpoint.md). Keep the service behind TLS, set `PUBLIC_HOST` to its exact hostname, and configure rate limiting at the ingress. The HTTP mode has no live-system adapter and must remain that way.
+
 ## Configure an MCP client
 
 After building, point an MCP client at the local executable:

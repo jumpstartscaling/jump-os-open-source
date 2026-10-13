@@ -1,6 +1,6 @@
 {
   "name": "@jumpstartscaling/jump-os-mcp-reference",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simulation-only MCP reference server for learning and testing Jump OS authority, evidence, verification, and rollback boundaries.",
   "type": "module",
   "private": false,
@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
+    "start:http": "node dist/http.js",
     "test": "npm run build && node --test test/*.test.js"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@types/node": "22.15.3",
     "typescript": "5.9.3"
   }
 }

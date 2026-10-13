@@ -4,16 +4,17 @@ import { Ajv } from "@modelcontextprotocol/server/validators/ajv";
 import { z } from "zod";
 import receiptSchema from "../../../schemas/execution-receipt.schema.json" with { type: "json" };
 
-const server = new McpServer({ name: "jump-os-reference", version: "0.3.0" });
-const ajv = new Ajv({ allErrors: true, strict: false });
-const validateReceipt = ajv.compile(receiptSchema);
-
 const requestType = z.enum(["read_only", "advisory", "bounded_mutation", "synchronization", "interruption"]);
 const outcome = z.enum(["accepted", "succeeded_unverified", "succeeded_verified", "unknown", "partially_completed", "provider_accepted_unreconciled", "rollback_requested"]);
 
 function result(payload: Record<string, unknown>) {
   return { content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }] };
 }
+
+export function createReferenceServer() {
+const server = new McpServer({ name: "jump-os-reference", version: "0.4.0" });
+const ajv = new Ajv({ allErrors: true, strict: false });
+const validateReceipt = ajv.compile(receiptSchema);
 
 server.registerTool(
   "jump_classify_request",
@@ -100,4 +101,9 @@ server.registerTool(
   }
 );
 
-await serveStdio(() => server);
+return server;
+}
+
+if (process.argv[1] && new URL(import.meta.url).pathname === process.argv[1]) {
+  await serveStdio(() => createReferenceServer());
+}
