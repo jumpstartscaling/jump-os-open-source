@@ -46,6 +46,15 @@ HOST=127.0.0.1 npm run start:http
 
 For a real public deployment, use the [public endpoint guide](../../docs/mcp-public-reference-endpoint.md). Keep the service behind TLS, set `PUBLIC_HOST` to its exact hostname, and configure rate limiting at the ingress. The HTTP mode has no live-system adapter and must remain that way.
 
+### Caddy + systemd reference deployment
+
+The versioned deployment assets under [`deploy/`](deploy/) run the service as
+an unprivileged user on `127.0.0.1:8787` and expose it only through Caddy on
+`https://mcp-reference.jumpstartscaling.com`. Validate the Caddy configuration
+before reloading it, then verify `/healthz`, `/status`, and an MCP `POST /mcp`
+request from outside the host. TLS belongs at Caddy; the Node process must not
+listen on 443 or on a public interface.
+
 ## Configure an MCP client
 
 After building, point an MCP client at the local executable:

@@ -1,0 +1,12 @@
+# Public, simulation-only Jump OS reference MCP endpoint.
+# TLS terminates in Caddy; the application remains reachable only on loopback.
+mcp-reference.jumpstartscaling.com {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=63072000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		X-Frame-Options "DENY"
+	}
+	reverse_proxy 127.0.0.1:8787
+}

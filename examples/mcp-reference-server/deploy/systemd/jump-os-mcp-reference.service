@@ -1,0 +1,27 @@
+[Unit]
+Description=Jump OS public reference MCP (simulation only)
+Documentation=https://github.com/jumpstartscaling/jump-os-open-source/tree/main/examples/mcp-reference-server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jumpmcp
+Group=jumpmcp
+WorkingDirectory=/srv/apps/jump-os-mcp-reference
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=8787
+Environment=PUBLIC_HOST=mcp-reference.jumpstartscaling.com
+ExecStart=/usr/bin/node /srv/apps/jump-os-mcp-reference/dist/http.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/apps/jump-os-mcp-reference
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
