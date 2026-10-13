@@ -2,9 +2,9 @@
 
 All notable public changes to Jump OS are documented here.
 
-## [0.2.0] - 2026-10-13
+## [0.3.0] - 2026-10-13
 
-Documentation and architecture navigation release.
+Documentation, architecture navigation, and safe MCP reference release.
 
 ### Added
 
@@ -18,6 +18,9 @@ Documentation and architecture navigation release.
 - Schema index documentation clarifying structural validation versus operational proof.
 - Repository-wide README navigation for ontology, schemas, uses, options, and guides.
 - Updated citation and machine-readable project metadata.
+- A free, simulation-only MCP reference server using the official TypeScript SDK.
+- Local `stdio` installation with no network client, credentials, filesystem mutation, shell execution, or live-system adapter.
+- MCP tools for request classification, authority inspection, receipt validation, proof-gap explanation, and fictional bounded-mutation outcomes.
 
 ### Verification
 
@@ -30,6 +33,10 @@ Documentation and architecture navigation release.
 ### Scope
 
 This remains an architectural research and community specification. It does not provide a production runtime, SDK, deployment chart, hosted service, compliance certification, or guarantee of safe execution.
+
+The MCP reference server is an educational, simulation-only example. It is not a production gateway and does not mutate external systems.
+
+## [0.2.0] - 2026-10-13
 
 ## [0.1.0] - 2026-09-30
 

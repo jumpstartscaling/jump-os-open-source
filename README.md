@@ -61,6 +61,8 @@ The command should report that the valid example is accepted and the intentional
 - Use the [receipt semantics](docs/receipt-semantics.md) to interpret `SUCCEEDED`, `VERIFIED`, `UNKNOWN`, `NOT_REVALIDATED`, and provider reconciliation states correctly.
 - Use the [ontology](ontology/README.md) for the shared vocabulary and authority relationships.
 - Choose a case from the [use-case patterns](uses/README.md), compare implementation [options](options/README.md), and follow the [case-by-case guides](guides/README.md).
+- Try the [free, simulation-only MCP reference server](examples/mcp-reference-server/README.md) to inspect authority, receipt, verification, and proof-gap behavior without connecting to live systems.
+- Installable package metadata and source are in [`examples/mcp-reference-server`](examples/mcp-reference-server/); the package is intentionally simulation-only and does not provide live-system access.
 - Reproduce the positive and negative receipt checks with the [validation instructions](examples/VALIDATION.md).
 - Review the [changelog](CHANGELOG.md) for versioned public changes.
 - Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.
