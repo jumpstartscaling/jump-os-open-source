@@ -10,8 +10,8 @@ authors:
 repository-code: https://github.com/jumpstartscaling/jump-os-open-source
 repository-artifact: https://github.com/jumpstartscaling/jump-os-open-source/releases
 license: Apache-2.0
-version: 0.1.0
-date-released: 2026-09-30
+version: 0.2.0
+date-released: 2026-10-13
 url: https://github.com/jumpstartscaling/jump-os-open-source
 keywords:
   - governed agents
@@ -23,3 +23,7 @@ keywords:
   - MCP
   - A2A
   - threat modeling
+  - ontology
+  - use-case patterns
+  - implementation options
+  - decision guides

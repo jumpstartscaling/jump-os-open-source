@@ -2,13 +2,34 @@
 
 All notable public changes to Jump OS are documented here.
 
-## Unreleased
+## [0.2.0] - 2026-10-13
+
+Documentation and architecture navigation release.
 
 ### Added
 
 - Operational lessons covering route/task authority separation, proof gaps, revalidation, Source Fabric, and bounded mutation failure states.
 - Receipt fields for observation freshness, revalidation evidence, and provider reconciliation.
 - Clearer deployment-context guidance in the research paper, replacing the fixed assistant intake directive.
+- A core ontology covering concepts, authority relationships, truth lanes, and state vocabulary.
+- Case-based use patterns for read-only research, bounded mutation, synchronization, and emergency stop.
+- Implementation option guidance for identity, policy engines, task durability, and verification.
+- Case-by-case decision guides for request classification, authority mapping, evidence selection, unknown state, and case studies.
+- Schema index documentation clarifying structural validation versus operational proof.
+- Repository-wide README navigation for ontology, schemas, uses, options, and guides.
+- Updated citation and machine-readable project metadata.
+
+### Verification
+
+- Valid receipt accepted.
+- Intentionally invalid receipt rejected.
+- JSON and schema parsing passed.
+- All relative Markdown links resolved.
+- `git diff --check` passed.
+
+### Scope
+
+This remains an architectural research and community specification. It does not provide a production runtime, SDK, deployment chart, hosted service, compliance certification, or guarantee of safe execution.
 
 ## [0.1.0] - 2026-09-30
 

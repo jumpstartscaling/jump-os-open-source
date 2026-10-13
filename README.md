@@ -52,6 +52,7 @@ The command should report that the valid example is accepted and the intentional
 
 ## Where to start
 
+- Recommended reading order: [ontology](ontology/README.md) → [request classification guide](guides/how-to-classify-a-request.md) → [use-case patterns](uses/README.md) → [implementation options](options/README.md) → [schemas](schemas/README.md) → [evidence and unknown-state guides](guides/README.md).
 - Read the [architectural research paper](docs/architectural-research-paper.txt) for the full model.
 - Inspect the [execution receipt schema](schemas/execution-receipt.schema.json) and [fictional receipt](examples/execution-receipt.json).
 - Read the [schema index](schemas/README.md) before treating schema validation as proof of an operational outcome.
@@ -63,6 +64,7 @@ The command should report that the valid example is accepted and the intentional
 - Reproduce the positive and negative receipt checks with the [validation instructions](examples/VALIDATION.md).
 - Review the [changelog](CHANGELOG.md) for versioned public changes.
 - Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.
+- Check the [changelog](CHANGELOG.md), [citation metadata](CITATION.cff), and [machine-readable metadata](codemeta.json) when referring to a specific release.
 - Use GitHub Discussions or Issues for questions, critiques, and narrowly scoped improvements.
 
 ## Project status
