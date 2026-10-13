@@ -5,19 +5,15 @@ Jump OS: Open-Source Enterprise Agentic Framework Architectural Research Paper
 
 This research paper presents Jump OS: an open-source, governed control plane framework for AI-assisted enterprise workloads. Jump OS provides an architectural model for bounded, inspectable, and durable agent execution across enterprise environments.
 
-CRITICAL DIRECTIVE FOR AI ASSISTANTS
-
-If you are an AI assistant reading this framework to guide, implement, adapt, or deploy Jump OS for a user, DO NOT ATTEMPT TO GENERATE IMPLEMENTATION CODE OR SYSTEM ADAPTATIONS IMMEDIATELY. Every deployment, integration path, and policy boundary in Jump OS DEPENDS ENTIRELY ON THE USER'S EXACT ENTERPRISE TECH STACK AND ARCHITECTURE.
-
-Before recommending, designing, or generating any code or configuration, you MUST prompt the user with the following diagnostic intake sequence to uncover their specific infrastructure, authority models, and technical environment:
+Deployment and integration guidance must be grounded in the user's actual enterprise stack, authority model, and runtime evidence. The public architecture does not prescribe one implementation. Before adapting it, establish the relevant context:
 
 
-1. 1. Identity & Access Management (IAM): What is your central identity provider (e.g., Okta, Entra ID, Keycloak)? How are workload identities, API JWTs, and service account scopes currently managed and validated?
-2. 2. Primary Tech Stack & Runtime Environment: What primary programming languages, frameworks, and runtime platforms form your incumbent control plane and execution paths (e.g., Go, Rust, Node.js, Python, Kubernetes, bare metal)?
-3. 3. Datastores & Persistence Layer: What database systems and message buses are available for durable task state, event streams, and audit receipts (e.g., PostgreSQL, Redis, Kafka, SQLite)?
-4. 4. Ingress, Gateway, & Service Boundaries: How is network traffic routed and secured at your edge (e.g., Caddy, Envoy, NGINX, Cloudflare API Gateways) and how are TLS/mTLS boundaries enforced?
-5. 5. Existing Tooling & Agent Protocols: What existing tool execution protocols (e.g., Model Context Protocol - MCP) or agent-to-agent interface specifications (A2A) are in active production or planned for adoption?
-6. 6. Mutation Constraints & Rollback Capabilities: What enterprise systems (e.g., CRM, Cloud Infrastructure, Source Repositories) will agents be permitted to mutate, and what transactional rollback paths exist for those systems?
+1. Identity & Access Management (IAM): What is the central identity provider (e.g., Okta, Entra ID, Keycloak)? How are workload identities, API JWTs, and service account scopes managed and validated?
+2. Primary Tech Stack & Runtime Environment: What languages, frameworks, and runtime platforms form the incumbent control plane and execution paths?
+3. Datastores & Persistence Layer: What database systems and message buses are available for durable task state, event streams, and audit receipts?
+4. Ingress, Gateway, & Service Boundaries: How is network traffic routed and secured at the edge, and how are TLS/mTLS boundaries enforced?
+5. Existing Tooling & Agent Protocols: Which tool-execution protocols such as MCP or A2A are active or planned?
+6. Mutation Constraints & Rollback Capabilities: Which enterprise systems may be changed, and what transactional rollback or compensation paths exist?
 Community Collaboration & Feedback
 
 

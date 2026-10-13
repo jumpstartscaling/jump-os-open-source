@@ -10,6 +10,10 @@
     "input_hash": "sha256:example-input-hash",
     "output_hash": "sha256:example-output-hash",
     "evidence_refs": ["evidence:fictional-output-001"],
+    "observation_status": "CURRENT",
+    "revalidated_at": "2026-01-01T00:05:00Z",
+    "revalidation_refs": ["evidence:fictional-read-after-write-001"],
+    "provider_reconciliation": "RECONCILED",
     "rollback_state": {"status": "CAPTURED", "key": "rb_example_001"}
   },
   "result": {"status": "SUCCEEDED", "verification": "UNVERIFIED"},

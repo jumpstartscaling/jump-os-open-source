@@ -2,6 +2,14 @@
 
 All notable public changes to Jump OS are documented here.
 
+## Unreleased
+
+### Added
+
+- Operational lessons covering route/task authority separation, proof gaps, revalidation, Source Fabric, and bounded mutation failure states.
+- Receipt fields for observation freshness, revalidation evidence, and provider reconciliation.
+- Clearer deployment-context guidance in the research paper, replacing the fixed assistant intake directive.
+
 ## [0.1.0] - 2026-09-30
 
 First public architecture release.

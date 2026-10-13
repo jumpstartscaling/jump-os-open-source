@@ -18,13 +18,13 @@ This roadmap describes the direction of the public Jump OS research project. It 
 - Compare policy-as-code integration patterns, including OPA/Rego and Cedar, in [policy-engine-boundaries.md](policy-engine-boundaries.md).
 - Describe safe adapter boundaries for MCP and A2A clients in [protocol-adapter-boundaries.md](protocol-adapter-boundaries.md).
 - Publish the [threat model](threat-model.md) and [emergency-stop architecture](emergency-stop.md), including unreachable-worker and incomplete-verification behavior.
+- Document operational lessons, route/task authority separation, proof gaps, revalidation, and Source Fabric in [operational-lessons.md](operational-lessons.md).
 
 ## Next: reference implementations
 
 - Build small, independently testable reference components.
 - Add a durable task-state example without tying the design to one datastore.
 - Add an evidence and verification example for a bounded mutation.
-- Build small, independently testable reference components.
 - Evaluate interoperability with existing enterprise identity and audit systems.
 
 ## Explicitly out of scope for this repository

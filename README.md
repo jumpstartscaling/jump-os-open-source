@@ -19,6 +19,7 @@ This repository is a public specification and community starting point. It is no
 - Bound production mutations to one intentional change at a time, with rollback material and verification.
 - Keep protocol adapters such as MCP and A2A behind the same identity and policy boundaries.
 - Prefer an explicit “unknown” or “not revalidated” state over confident theater.
+- Separate route, task, policy, worker, receipt, verification, and rollback authority; no router or graph inherits the others' authority.
 
 ## Read the paper
 
@@ -31,6 +32,7 @@ The sanitized receipt example is in [`examples/execution-receipt.json`](examples
 - Read the [architectural research paper](docs/architectural-research-paper.txt) for the full model.
 - Inspect the [execution receipt schema](schemas/execution-receipt.schema.json) and [fictional receipt](examples/execution-receipt.json).
 - Read the [receipt field semantics](docs/receipt-semantics.md), [task lifecycle](docs/task-lifecycle.md), [policy boundaries](docs/policy-engine-boundaries.md), [protocol adapter boundaries](docs/protocol-adapter-boundaries.md), [threat model](docs/threat-model.md), and [emergency-stop architecture](docs/emergency-stop.md).
+- Read the [operational lessons and proof boundaries](docs/operational-lessons.md) for route authority, revalidation, Source Fabric, and bounded mutation examples.
 - Reproduce the positive and negative receipt checks with the [validation instructions](examples/VALIDATION.md).
 - Review the [changelog](CHANGELOG.md) for versioned public changes.
 - Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.

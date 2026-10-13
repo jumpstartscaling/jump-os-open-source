@@ -54,6 +54,10 @@
         "input_hash": {"type": "string", "minLength": 1},
         "output_hash": {"type": ["string", "null"]},
         "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "observation_status": {"type": "string", "enum": ["CURRENT", "NOT_REVALIDATED", "UNKNOWN"]},
+        "revalidated_at": {"type": ["string", "null"], "format": "date-time"},
+        "revalidation_refs": {"type": "array", "items": {"type": "string"}},
+        "provider_reconciliation": {"type": "string", "enum": ["NOT_APPLICABLE", "PENDING", "RECONCILED", "FAILED", "UNKNOWN"]},
         "rollback_state": {
           "type": "object", "additionalProperties": false,
           "required": ["status"],
