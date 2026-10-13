@@ -13,7 +13,10 @@ const handler = createMcpHandler(createReferenceServer, {
   // stateless; the SDK's newer envelope-based mode remains available too.
   legacy: "stateless",
   responseMode: "json",
-  maxRequestBodySize: MAX_BODY_BYTES
+  maxRequestBodySize: MAX_BODY_BYTES,
+  // Protocol failures are retained in the service journal without recording
+  // request bodies, headers, profiles, credentials, or caller identities.
+  onerror: (error) => console.error(`jump_os_mcp_protocol_error: ${error.message}`)
 });
 
 function securityHeaders(response: import("node:http").ServerResponse) {

@@ -10,6 +10,7 @@ test("public HTTP entry point has bounded, simulation-only routes", () => {
   assert.match(source, /healthz/);
   assert.match(source, /\/mcp/);
   assert.match(source, /legacy: "stateless"/);
+  assert.match(source, /jump_os_mcp_protocol_error/);
   assert.doesNotMatch(source, /^\s*(await\s+)?fetch\(/m);
   assert.doesNotMatch(source, /child_process|exec\(|spawn\(|writeFile\(/);
 });
