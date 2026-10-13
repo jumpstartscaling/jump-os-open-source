@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
-import { Ajv } from "@modelcontextprotocol/server/validators/ajv";
+import { Ajv2020 } from "ajv/dist/2020.js";
 import { z } from "zod";
 import receiptSchema from "../../../schemas/execution-receipt.schema.json" with { type: "json" };
 import { components, guidanceFor, roles, validateProfile } from "./validator.js";
@@ -14,7 +14,10 @@ function result(payload: Record<string, unknown>) {
 
 export function createReferenceServer() {
 const server = new McpServer({ name: "jump-os-reference", version: "0.5.0" });
-const ajv = new Ajv({ allErrors: true, strict: false });
+// The public receipt contract declares JSON Schema draft 2020-12. Using its
+// matching Ajv implementation ensures the tool catalog is constructible for
+// every MCP request, rather than only failing when the server is first used.
+const ajv = new Ajv2020({ allErrors: true, strict: false });
 const validateReceipt = ajv.compile(receiptSchema);
 
 server.registerTool(
