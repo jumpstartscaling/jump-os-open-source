@@ -54,9 +54,12 @@ The command should report that the valid example is accepted and the intentional
 
 - Read the [architectural research paper](docs/architectural-research-paper.txt) for the full model.
 - Inspect the [execution receipt schema](schemas/execution-receipt.schema.json) and [fictional receipt](examples/execution-receipt.json).
+- Read the [schema index](schemas/README.md) before treating schema validation as proof of an operational outcome.
 - Read the [receipt field semantics](docs/receipt-semantics.md), [task lifecycle](docs/task-lifecycle.md), [policy boundaries](docs/policy-engine-boundaries.md), [protocol adapter boundaries](docs/protocol-adapter-boundaries.md), [threat model](docs/threat-model.md), and [emergency-stop architecture](docs/emergency-stop.md).
 - Read the [operational lessons and proof boundaries](docs/operational-lessons.md) for route authority, revalidation, Source Fabric, and bounded mutation examples.
 - Use the [receipt semantics](docs/receipt-semantics.md) to interpret `SUCCEEDED`, `VERIFIED`, `UNKNOWN`, `NOT_REVALIDATED`, and provider reconciliation states correctly.
+- Use the [ontology](ontology/README.md) for the shared vocabulary and authority relationships.
+- Choose a case from the [use-case patterns](uses/README.md), compare implementation [options](options/README.md), and follow the [case-by-case guides](guides/README.md).
 - Reproduce the positive and negative receipt checks with the [validation instructions](examples/VALIDATION.md).
 - Review the [changelog](CHANGELOG.md) for versioned public changes.
 - Review the [project roadmap](docs/PROJECT-ROADMAP.md) to see what is proposed, what is being researched, and what is not promised.
