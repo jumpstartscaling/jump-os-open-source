@@ -1,6 +1,6 @@
 {
   "name": "@jumpstartscaling/jump-os-mcp-reference",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A simulation-only MCP reference server for learning and testing Jump OS authority, evidence, verification, and rollback boundaries.",
   "type": "module",
   "private": false,

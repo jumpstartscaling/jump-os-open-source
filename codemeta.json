@@ -7,7 +7,7 @@
   "issueTracker": "https://github.com/jumpstartscaling/jump-os-open-source/issues",
   "releaseNotes": "https://github.com/jumpstartscaling/jump-os-open-source/blob/main/CHANGELOG.md",
   "license": "https://spdx.org/licenses/Apache-2.0.html",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "dateCreated": "2026-09-27",
   "dateModified": "2026-10-13",
   "programmingLanguage": [],

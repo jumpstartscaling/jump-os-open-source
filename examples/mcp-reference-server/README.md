@@ -67,10 +67,16 @@ Use an absolute path and inspect the client configuration before enabling it. No
 
 - `jump_classify_request` classifies a request without executing it.
 - `jump_inspect_authority` shows which authority decisions remain unresolved.
+- `jump_get_guidance` gives role- and component-specific documentation and checklists.
+- `jump_validate_profile` evaluates a submitted, non-secret architecture profile against the public baseline.
 - `jump_validate_receipt` validates a supplied receipt in memory.
 - `jump_simulate_bounded_mutation` produces fictional accepted, verified, unknown, partial, unreconciled, and rollback-requested outcomes.
 - `jump_explain_proof_gap` explains why supplied facts do not establish independent verification.
 
-## Future transport work
+The [public validator guide](../../docs/mcp-public-validator.md) explains appropriate inputs, role-specific reading paths, result meaning, monitoring, and privacy limitations. A fictional [profile example](examples/public-profile.json) is included.
 
-Remote Streamable HTTP is intentionally not included in this first reference. Adding it would require explicit authentication, origin validation, tenant isolation, per-tool authorization, session handling, rate limiting, cancellation propagation, and deployment guidance. It must not be added merely to make the demo reachable from the public internet.
+## Monitoring
+
+Every request emits a structured usage event to standard output. The event contains only operational metadata: timestamp, generated event ID, route, method, status, duration, request size, and MCP tool name. It does not log request bodies, tool arguments, submitted profiles, IP addresses, credentials, cookies, authorization headers, tenant identifiers, or user-agent strings.
+
+`GET /status` returns aggregate, in-memory request and error counters. Use your host's log collection and uptime checks for durable monitoring. Do not configure raw request-body logging for this public endpoint.

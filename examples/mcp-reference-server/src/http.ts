@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { createMcpHandler } from "@modelcontextprotocol/server";
 import { createReferenceServer } from "./server.js";
+import { recordUsage, usageSnapshot } from "./usage.js";
 
 const PORT = Number(process.env.PORT ?? "8787");
 const HOST = process.env.HOST ?? "127.0.0.1";
@@ -32,10 +33,13 @@ async function bodyOf(request: import("node:http").IncomingMessage): Promise<Buf
 }
 
 const httpServer = createServer(async (request, response) => {
+  const started = Date.now();
+  const record = (status: number, requestBytes?: number, tool?: string) => recordUsage({ method: request.method ?? "UNKNOWN", path: new URL(request.url ?? "/", "http://localhost").pathname, status, duration_ms: Date.now() - started, request_bytes: requestBytes, mcp_tool: tool });
   securityHeaders(response);
   if (PUBLIC_HOST && request.headers.host !== PUBLIC_HOST) {
     response.writeHead(421, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ error: "misdirected_request" }));
+    record(421);
     return;
   }
   const origin = `http://${request.headers.host ?? "localhost"}`;
@@ -44,23 +48,38 @@ const httpServer = createServer(async (request, response) => {
   if (request.method === "GET" && url.pathname === "/healthz") {
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "ok", service: "jump-os-mcp-reference", simulation_only: true }));
+    record(200);
     return;
   }
 
   if (request.method === "GET" && url.pathname === "/") {
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ service: "jump-os-mcp-reference", endpoint: "/mcp", transport: "Streamable HTTP", simulation_only: true, live_system_access: false }));
+    record(200);
+    return;
+  }
+
+  if (request.method === "GET" && url.pathname === "/status") {
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.end(JSON.stringify(usageSnapshot()));
+    record(200);
     return;
   }
 
   if (request.method !== "POST" || url.pathname !== "/mcp") {
     response.writeHead(404, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ error: "not_found" }));
+    record(404);
     return;
   }
 
   try {
     const body = await bodyOf(request);
+    let tool: string | undefined;
+    try {
+      const parsed = JSON.parse(body.toString()) as { params?: { name?: unknown } };
+      tool = typeof parsed.params?.name === "string" ? parsed.params.name : undefined;
+    } catch { /* The MCP handler returns the protocol error. */ }
     const headers = new Headers();
     for (const [name, value] of Object.entries(request.headers)) {
       if (value) headers.set(name, Array.isArray(value) ? value.join(",") : value);
@@ -70,10 +89,12 @@ const httpServer = createServer(async (request, response) => {
     const mcpResponse = await handler.fetch(webRequest);
     response.writeHead(mcpResponse.status, Object.fromEntries(mcpResponse.headers.entries()));
     response.end(Buffer.from(await mcpResponse.arrayBuffer()));
+    record(mcpResponse.status, body.length, tool);
   } catch (error) {
     const status = error instanceof Error && error.message === "REQUEST_TOO_LARGE" ? 413 : 400;
     response.writeHead(status, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ error: status === 413 ? "request_too_large" : "invalid_request" }));
+    record(status);
   }
 });
 

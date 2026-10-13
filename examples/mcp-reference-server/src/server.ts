@@ -3,6 +3,7 @@ import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { Ajv } from "@modelcontextprotocol/server/validators/ajv";
 import { z } from "zod";
 import receiptSchema from "../../../schemas/execution-receipt.schema.json" with { type: "json" };
+import { components, guidanceFor, roles, validateProfile } from "./validator.js";
 
 const requestType = z.enum(["read_only", "advisory", "bounded_mutation", "synchronization", "interruption"]);
 const outcome = z.enum(["accepted", "succeeded_unverified", "succeeded_verified", "unknown", "partially_completed", "provider_accepted_unreconciled", "rollback_requested"]);
@@ -12,9 +13,27 @@ function result(payload: Record<string, unknown>) {
 }
 
 export function createReferenceServer() {
-const server = new McpServer({ name: "jump-os-reference", version: "0.4.0" });
+const server = new McpServer({ name: "jump-os-reference", version: "0.5.0" });
 const ajv = new Ajv({ allErrors: true, strict: false });
 const validateReceipt = ajv.compile(receiptSchema);
+
+server.registerTool(
+  "jump_get_guidance",
+  {
+    description: "Return role- and component-specific Jump OS documentation and a bounded checklist without contacting a live system.",
+    inputSchema: z.object({ role: z.enum(roles), component: z.enum(components).optional() })
+  },
+  async ({ role, component }) => result(guidanceFor(role, component))
+);
+
+server.registerTool(
+  "jump_validate_profile",
+  {
+    description: "Assess a supplied, non-secret Jump OS profile against the public baseline; no systems are contacted or changed.",
+    inputSchema: z.object({ profile: z.record(z.string(), z.unknown()) })
+  },
+  async ({ profile }) => result(validateProfile(profile))
+);
 
 server.registerTool(
   "jump_classify_request",

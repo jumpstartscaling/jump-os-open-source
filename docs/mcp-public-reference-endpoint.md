@@ -8,6 +8,7 @@ The Jump OS MCP reference server can run as a public Streamable HTTP endpoint, b
 | --- | --- | --- |
 | `/` | `GET` | Service metadata and safety posture. |
 | `/healthz` | `GET` | Health status for an operator or load balancer. |
+| `/status` | `GET` | Aggregate, privacy-conscious in-memory usage counters. |
 | `/mcp` | `POST` | MCP Streamable HTTP requests. |
 
 All other paths and methods return `404`. The server does not enable browser CORS. It is intended for MCP clients and reverse proxies, not browser JavaScript.
@@ -54,3 +55,5 @@ If the service uses a stable IP address instead, use an `A` record. Do not publi
 ## Operational boundary
 
 The public endpoint can receive only the same safe tools available in the local reference server. It cannot alter Jumpstart Scaling systems, GitHub, cloud resources, CRMs, databases, local files, or any external service. A deployment must preserve that restriction: do not add secrets, network credentials, live adapters, shell tools, or write-capable plugins to this image.
+
+The [public validator guide](mcp-public-validator.md) defines the baseline validation scope, role-specific guidance, result language, and privacy contract.

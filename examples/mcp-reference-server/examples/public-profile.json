@@ -1,0 +1,8 @@
+{
+  "name": "fictional-jump-os-evaluation",
+  "components": ["ontology", "identity", "route", "task", "policy", "worker", "receipt", "evidence", "verification", "rollback", "mcp_adapter"],
+  "mutates_state": true,
+  "uses_mcp": true,
+  "runtime_proof": false,
+  "notice": "Fictional, non-secret profile for the public baseline validator. It does not prove a live system exists or works."
+}

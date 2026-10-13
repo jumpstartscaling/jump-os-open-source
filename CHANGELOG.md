@@ -2,9 +2,9 @@
 
 All notable public changes to Jump OS are documented here.
 
-## [0.4.0] - 2026-10-13
+## [0.5.0] - 2026-10-13
 
-Documentation, architecture navigation, and safe public MCP reference release.
+Documentation, architecture navigation, and safe public Jump OS baseline validator release.
 
 ### Added
 
@@ -24,6 +24,10 @@ Documentation, architecture navigation, and safe public MCP reference release.
 - Optional Streamable HTTP entry point for the same simulation-only MCP tools.
 - Loopback-only default, a 64 KiB request limit, fixed endpoint routes, security headers, and optional exact-host enforcement.
 - Container build instructions and public deployment guidance for TLS, rate limiting, ingress logging, and DNS.
+- Role- and component-specific guidance for architects, operators, implementers, security reviewers, and contributors.
+- A public, non-secret Jump OS profile validator with explicit result limitations.
+- Structured, privacy-conscious stdout usage events and aggregate in-memory status counters.
+- Fictional public profile example and validator/monitoring documentation.
 
 ### Verification
 
@@ -38,6 +42,18 @@ Documentation, architecture navigation, and safe public MCP reference release.
 This remains an architectural research and community specification. It does not provide a production runtime, SDK, deployment chart, hosted service, compliance certification, or guarantee of safe execution.
 
 The MCP reference server is an educational, simulation-only example. It is not a production gateway and does not mutate external systems.
+
+The public baseline validator checks only user-submitted declarations. It does not inspect, certify, or establish the health of an external Jump OS system.
+
+## [0.4.0] - 2026-10-13
+
+Safe public Streamable HTTP MCP reference release.
+
+### Added
+
+- Optional Streamable HTTP endpoint for the simulation-only MCP tools.
+- Loopback-only default binding, request limit, fixed routes, security headers, and optional exact-host enforcement.
+- Container build instructions and public deployment guidance for TLS, rate limiting, ingress logging, and DNS.
 
 ## [0.3.0] - 2026-10-13
 
